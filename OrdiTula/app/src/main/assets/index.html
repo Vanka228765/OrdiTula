@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Куда поведёт Орди? — Прогулки по Туле</title>
+  <!-- Прямое подключение manifest.json для PWABuilder -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#4B131C" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Орди: Тула" />
+  <meta name="application-name" content="Куда поведёт Орди?" />
+  <meta name="description" content="Романтические прогулки и свидания по Туле с псом Орди: готовые маршруты, пит-стопы и Яндекс Карты." />
+  <link id="pwa-icon" rel="icon" type="image/svg+xml" />
+  <link id="pwa-apple-icon" rel="apple-touch-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: {
+              950: '#310B12',
+              900: '#46111A',
+              800: '#5A1822',
+              700: '#73212D',
+            },
+            parchment: {
+              50: '#FCF9F4',
+              100: '#F4ECE1',
+              200: '#E8DAC6',
+              300: '#D6C1A5',
+            },
+            ochre: {
+              400: '#DF8A58',
+              500: '#C86D3B',
+              600: '#A95528',
+            },
+            pine: {
+              600: '#3E5948',
+              700: '#2E4436',
+            }
+          },
+          fontFamily: {
+            display: ['Oswald', 'sans-serif'],
+            sans: ['Manrope', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #24070C;
+      font-family: 'Manrope', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app-bg-frosted {
+      background-color: #4B131C;
+      background-image:
+        radial-gradient(circle at 15% 12%, rgba(200, 109, 59, 0.34) 0%, transparent 45%),
+        radial-gradient(circle at 88% 35%, rgba(145, 38, 56, 0.55) 0%, transparent 52%),
+        radial-gradient(circle at 22% 78%, rgba(223, 138, 88, 0.24) 0%, transparent 48%),
+        linear-gradient(165deg, #5A1822 0%, #4B131C 48%, #340B12 100%);
+    }
+
+    .bg-ornament-mesh {
+      background-image: url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23F4ECE1' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M28 4 L34 14 L44 20 L34 26 L28 36 L22 26 L12 20 L22 14 Z'/%3E%3Ccircle cx='28' cy='20' r='3'/%3E%3Cpath d='M0 48 L8 40 L16 48 L8 56 Z M40 48 L48 40 L56 48 L48 56 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 56px 56px;
+    }
+
+    .paper-card {
+      background: linear-gradient(145deg, rgba(244, 236, 225, 0.90) 0%, rgba(244, 236, 225, 0.79) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(244, 236, 225, 0.45);
+      box-shadow: 0 10px 30px rgba(28, 5, 10, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .burgundy-glass {
+      background: linear-gradient(145deg, rgba(75, 19, 28, 0.68) 0%, rgba(49, 11, 18, 0.58) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(244, 236, 225, 0.28);
+      box-shadow: 0 8px 24px rgba(24, 4, 8, 0.28), inset 0 1px 0 rgba(244, 236, 225, 0.16);
+    }
+
+    .frosted-bar {
+      background: rgba(244, 236, 225, 0.86);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(244, 236, 225, 0.5);
+    }
+
+    .ornament-frame {
+      position: relative;
+    }
+    .ornament-frame::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px dashed rgba(90, 24, 34, 0.32);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .vyaz-title {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-3px) rotate(1.5deg); }
+    }
+    .ordi-float {
+      animation: gentleBounce 3.2s ease-in-out infinite;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-screen {
+      animation: fadeSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center sm:p-4 md:p-6 text-wine-950">
+
+  <div id="app-shell" class="relative w-full sm:w-[400px] h-[100dvh] sm:h-[820px] app-bg-frosted sm:rounded-[42px] sm:border-[8px] sm:border-wine-950 sm:shadow-[0_25px_70px_rgba(0,0,0,0.65)] overflow-hidden flex flex-col">
+
+    <div class="absolute inset-0 bg-ornament-mesh pointer-events-none"></div>
+
+    <div class="relative z-10 w-full h-3 bg-wine-950/85 backdrop-blur-md flex items-center justify-center overflow-hidden shrink-0 border-b border-parchment-100/20">
+      <svg class="w-full h-2.5 text-ochre-400/80" viewBox="0 0 400 10" preserveAspectRatio="none">
+        <pattern id="rus-border" x="0" y="0" width="20" height="10" patternUnits="userSpaceOnUse">
+          <path d="M0 5 L5 1 L10 5 L5 9 Z M10 5 L15 1 L20 5 L15 9 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="5" cy="5" r="1" fill="currentColor"/>
+          <circle cx="15" cy="5" r="1" fill="currentColor"/>
+        </pattern>
+        <rect width="400" height="10" fill="url(#rus-border)"/>
+      </svg>
+    </div>
+
+    <main id="main-content" class="relative z-10 flex-1 overflow-y-auto no-scrollbar pb-24 px-4 pt-3"></main>
+
+    <div id="route-modal" class="hidden absolute inset-0 z-40 app-bg-frosted flex flex-col animate-screen"></div>
+
+    <div id="toast" class="pointer-events-none opacity-0 transition-opacity duration-300 absolute top-14 left-4 right-4 z-50 burgundy-glass text-parchment-100 px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-medium">
+      <span class="text-base">🐾</span>
+      <span id="toast-text">Маршрут обновлён!</span>
+    </div>
+
+    <nav class="frosted-bar absolute bottom-0 inset-x-0 z-30 px-1.5 pt-2 pb-4 sm:pb-3 shadow-[0_-8px_25px_rgba(28,5,10,0.35)]">
+      <div class="grid grid-cols-5 gap-0.5">
+        <button onclick="switchTab('walks')" data-tab="walks" class="nav-btn flex flex-col items-center justify-center py-1.5 rounded-xl transition-all text-wine-800 bg-wine-800/12 font-extrabold">
+          <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-[10px] leading-tight">Прогулки</span>
+        </button>
+
+        <button onclick="switchTab('builder')" data-tab="builder" class="nav-btn flex flex-col items-center justify-center py-1.5 rounded-xl transition-all text-wine-900/60 hover:text-wine-800">
+          <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+          <span class="text-[10px] leading-tight">Свой путь</span>
+        </button>
+
+        <button onclick="switchTab('swipe')" data-tab="swipe" class="nav-btn flex flex-col items-center justify-center py-1.5 rounded-xl transition-all text-wine-900/60 hover:text-wine-800">
+          <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-[10px] leading-tight">Вдвоём</span>
+        </button>
+
+        <button onclick="switchTab('food')" data-tab="food" class="nav-btn flex flex-col items-center justify-center py-1.5 rounded-xl transition-all text-wine-900/60 hover:text-wine-800">
+          <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" stroke-linejoin="round"/>
+            <line x1="6" y1="1" x2="6" y2="4"/>
+            <line x1="10" y1="1" x2="10" y2="4"/>
+            <line x1="14" y1="1" x2="14" y2="4"/>
+          </svg>
+          <span class="text-[10px] leading-tight">Перекусить</span>
+        </button>
+
+        <button onclick="switchTab('tula')" data-tab="tula" class="nav-btn flex flex-col items-center justify-center py-1.5 rounded-xl transition-all text-wine-900/60 hover:text-wine-800">
+          <svg class="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" stroke-linejoin="round"/>
+            <line x1="8" y1="2" x2="8" y2="18"/>
+            <line x1="16" y1="6" x2="16" y2="22"/>
+          </svg>
+          <span class="text-[10px] leading-tight">Наша Тула</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    function buildYandexRouteUrl(coordsArray) {
+      const rtext = coordsArray.map(c => Array.isArray(c) ? `${c[0]},${c[1]}` : encodeURIComponent(c)).join('~');
+      return `https://yandex.ru/maps/?rtext=${rtext}&rtt=pd`;
+    }
+
+    const INITIAL_ROUTES = [
+      {
+        id: 'kremlin-cozy',
+        districtLabel: 'Центральный район · Казанская набережная',
+        title: 'Огни набережной и секретный переулок',
+        subtitle: 'Вечерний променад вдоль стен Кремля, купеческая улица Металлистов и уютный ужин',
+        duration: '1 ч 40 мин',
+        walkTime: '55 мин ходьбы + 45 мин паузы',
+        distance: '2,4 км',
+        stepsCount: '~3 200 шагов',
+        terrain: 'Ровная брусчатка и набережная · Без горок',
+        budget: '₽₽',
+        tags: ['Вечерний вайб', '1.5–2 часа', 'Кофе и еда'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.197365, 37.619015],
+          [54.195510, 37.616980],
+          [54.193240, 37.614850],
+          [54.193120, 37.617750]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Казанская набережная (старт у Музейного квартала)',
+            desc: 'Встречаемся у воды и неспешно идём вдоль деревянных настилов под вечерней подсветкой башен Кремля.',
+            task: 'Найти самую тихую скамейку у самой воды и загадать, куда поедете в следующий отпуск.'
+          },
+          {
+            type: 'pitstop',
+            badge: '☕ Погреться · +1 мин от тропы',
+            title: 'Пит-стоп от Ордички: Кофейня «Кофе Культ» на Металлистов',
+            place: 'ул. Металлистов, 16',
+            recommend: 'Авторский раф с халвой и тёплый круассан с собой.',
+            ordiNote: 'Здесь пахнет свежей выпечкой так, что даже я бы выпросил кусочек!'
+          },
+          {
+            type: 'walk',
+            title: '2. Улица Металлистов и Крестовоздвиженская площадь',
+            desc: 'Рассматриваем старинные купеческие фасады, резные вывески и подсвеченные арки переулков.',
+            task: 'Выбрать один исторический особняк и придумать, какое кафе или квартиру вы бы в нём открыли.'
+          },
+          {
+            type: 'pitstop',
+            badge: '🍕 Сытно и красиво · Ужин',
+            title: 'Пит-стоп от Ордички: Городское пространство «Искра»',
+            place: 'ул. Советская, 11',
+            recommend: 'Неаполитанская пицца в «Лисице» или хачапури в «Пряностях и Радостях».',
+            ordiNote: 'Идеальное место под гирляндами, чтобы согреться и поболтать!'
+          },
+          {
+            type: 'walk',
+            title: '3. Финал: Площадь Ленина и сквер у Пряника',
+            desc: 'Делаем совместное фото на память и закрываем прогулку в дневнике «Наша Тула».'
+          }
+        ]
+      },
+      {
+        id: 'belousov-park',
+        districtLabel: 'Советский район · ЦПКиО им. Белоусова',
+        title: 'Липовая аллея и каскад прудов',
+        subtitle: 'Спокойная прогулка на природе в центре города с утками и тёплым облепиховым чаем',
+        duration: '1 ч 30 мин',
+        walkTime: '1 ч ходьбы + 30 мин паузы',
+        distance: '3,2 км',
+        stepsCount: '~4 300 шагов',
+        terrain: 'Асфальт и лесные тропы · Лёгкий маршрут',
+        budget: '₽',
+        tags: ['Природа', '1.5–2 часа', 'Кофе и еда'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.181250, 37.590100],
+          [54.178420, 37.584120],
+          [54.175120, 37.586840]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Главный вход в Белоусовский парк (с ул. Первомайской)',
+            desc: 'Идём по широкой центральной аллее вглубь парка, подальше от городского шума.',
+            task: 'Устроить мини-фотосессию под кронами вековых деревьев.'
+          },
+          {
+            type: 'pitstop',
+            badge: '☕ Погреться · В парке',
+            title: 'Пит-стоп от Ордички: Кофейня у фонтана / на аллее',
+            place: 'Центральная аллея ЦПКиО',
+            recommend: 'Горячий облепиховый чай с мёдом или какао с маршмеллоу.',
+            ordiNote: 'С тёплым стаканчиком гулять мимо прудов вдвойне уютнее!'
+          },
+          {
+            type: 'walk',
+            title: '2. Каскад прудов и мост у островка',
+            desc: 'Спускаемся к воде, наблюдаем за утками и делаем круг вокруг большого пруда.'
+          }
+        ]
+      },
+      {
+        id: 'oktava-art',
+        districtLabel: 'Центральный район · Кластер «Октава»',
+        title: 'Индустриальный арт и книжный вайб',
+        subtitle: 'Творческий кластер «Октава», внутренний двор, кофе и тихие переулки',
+        duration: '1 ч 15 мин',
+        walkTime: '35 мин ходьбы + 40 мин внутри',
+        distance: '1,6 км',
+        stepsCount: '~2 100 шагов',
+        terrain: 'Ровный центр · Короткий маршрут',
+        budget: '₽₽',
+        tags: ['Арт и уют', 'До 1 часа', 'Кофе и еда'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.189210, 37.626840],
+          [54.191450, 37.624120],
+          [54.193120, 37.617750]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Двор творческого индустриального кластера «Октава»',
+            desc: 'Смотрим уличные арт-объекты, заглядываем в книжный магазин «Порядок слов» и Музей станка.',
+            task: 'Выбрать друг другу по одной необычной открытке в книжном магазине.'
+          },
+          {
+            type: 'pitstop',
+            badge: '🥐 Сладкая пауза · В кластере',
+            title: 'Пит-стоп от Ордички: Кафе «Волна» в Октаве',
+            place: 'Центральный переулок, 18',
+            recommend: 'Фильтр-кофе, цитрусовый раф и фирменный медовик.',
+            ordiNote: 'Очень стильное место, где можно посидеть у больших окон!'
+          },
+          {
+            type: 'walk',
+            title: '2. Прогулка по Центральному переулку к площади Ленина',
+            desc: 'Выходим из кластера в сторону исторического центра под вечерними фонарями.'
+          }
+        ]
+      },
+      {
+        id: 'wooden-tula',
+        districtLabel: 'Центральный район · ул. Тургеневская',
+        title: 'Резные наличники старой Тулы',
+        subtitle: 'Атмосферная прогулка по тихим улицам Тургеневской и Гоголевской без толп туристов',
+        duration: '1 ч 10 мин',
+        walkTime: '50 мин ходьбы + 20 мин кофе',
+        distance: '2,2 км',
+        stepsCount: '~2 900 шагов',
+        terrain: 'Тихие улицы · Без горок',
+        budget: '₽',
+        tags: ['Вечерний вайб', 'До 1 часа', 'История'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.188640, 37.611420],
+          [54.186210, 37.608950],
+          [54.187450, 37.609820]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Заповедная улица Тургеневская',
+            desc: 'Идём мимо купеческих деревянных домов XIX века с ажурными наличниками.',
+            task: 'Найти дом с самыми красивыми резными ставнями и сфотографироваться на его фоне.'
+          },
+          {
+            type: 'pitstop',
+            badge: '☕ Кофе с собой · По пути',
+            title: 'Пит-стоп от Ордички: Кофейня на проспекте Ленина',
+            place: 'пр-т Ленина (пересечение с Гоголевской)',
+            recommend: 'Капучино с корицей и свежая слойка с вишней.',
+            ordiNote: 'Берём горячий кофе и сворачиваем обратно в тишину переулков!'
+          },
+          {
+            type: 'walk',
+            title: '2. Улица Гоголевская и выход к Пушкинскому скверу',
+            desc: 'Завершаем маршрут в камерном сквере с фонарями.'
+          }
+        ]
+      },
+      {
+        id: 'platonovsky-estate',
+        districtLabel: 'Привокзальный район · Платоновский парк',
+        title: 'Усадьба, белый мостик и два пруда',
+        subtitle: 'Романтичный маршрут вдали от суеты с видом на воду и вековые дубы',
+        duration: '1 ч 50 мин',
+        walkTime: '1 ч 15 мин ходьбы + 35 мин паузы',
+        distance: '3,8 км',
+        stepsCount: '~5 000 шагов',
+        terrain: 'Парковые дорожки и мостики · Лёгкие спуски',
+        budget: '₽',
+        tags: ['Природа', '1.5–2 часа', 'Романтика'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.148920, 37.589850],
+          [54.146420, 37.590610],
+          [54.144850, 37.591420]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Вход со стороны проспекта Ленина и Верхний пруд',
+            desc: 'Проходим к белому ажурному мостику и любуемся отражением деревьев в воде.',
+            task: 'Загадать желание на середине белого мостика.'
+          },
+          {
+            type: 'pitstop',
+            badge: '🥐 Сладкая пауза · У воды',
+            title: 'Пит-стоп от Ордички: Павильон у набережной пруда',
+            place: 'Платоновский парк',
+            recommend: 'Бельгийские вафли с карамелью и горячий ягодный чай.',
+            ordiNote: 'Здесь очень уютно сидеть на лавочках прямо у кромки воды!'
+          },
+          {
+            type: 'walk',
+            title: '2. Нижний пруд и тихая дубовая аллея',
+            desc: 'Делаем большой круг по лесной части парка и возвращаемся к выходу.'
+          }
+        ]
+      },
+      {
+        id: 'likerka-loft',
+        districtLabel: 'Советский район · Ликёрка Лофт',
+        title: 'Красный кирпич, Левша и вечерний ужин',
+        subtitle: 'Стильный маршрут от проспекта Ленина в уютный двор «Ликёрки Лофт»',
+        duration: '1 ч 35 мин',
+        walkTime: '40 мин ходьбы + 55 мин ужин',
+        distance: '2,1 км',
+        stepsCount: '~2 800 шагов',
+        terrain: 'Ровный проспект и брусчатка двора',
+        budget: '₽₽₽',
+        tags: ['Вечерний вайб', '1.5–2 часа', 'Кофе и еда'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.179540, 37.602120],
+          [54.174350, 37.599850]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Прогулка по проспекту Ленина к Ликёрке Лофт',
+            desc: 'Идём вдоль вечерних витрин и сворачиваем в старинный краснокирпичный комплекс XIX века.',
+            task: 'Найти во дворе знаменитый памятник Левше, подковавшему блоху.'
+          },
+          {
+            type: 'pitstop',
+            badge: '🍷 Красивый ужин · Внутри лофта',
+            title: 'Пит-стоп от Ордички: Ресторан или кофейня в «Ликёрке Лофт»',
+            place: 'пр-т Ленина, 85',
+            recommend: 'Авторские бургеры, паста или десерт с травяным чаем.',
+            ordiNote: 'Вечером здесь зажигаются тёплые лампочки — атмосфера как в кино!'
+          }
+        ]
+      },
+      {
+        id: 'batashev-garden',
+        districtLabel: 'Зареченский район · Баташевский сад',
+        title: 'Деревянные мостки над рекой Тулицей',
+        subtitle: 'Уютная прогулка по обновлённому эко-парку в Заречье с берёзовой рощей',
+        duration: '1 ч 45 мин',
+        walkTime: '1 ч 15 мин ходьбы + 30 мин кофе',
+        distance: '3,6 км',
+        stepsCount: '~4 800 шагов',
+        terrain: 'Деревянные настилы и дорожки · Без горок',
+        budget: '₽',
+        tags: ['Природа', '1.5–2 часа', 'Романтика'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.215840, 37.624910],
+          [54.218120, 37.627450]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Центральная аллея Баташевского сада',
+            desc: 'Заходим в парк и спускаемся к деревянным настилам вдоль извилистого русла реки Тулицы.',
+            task: 'Посчитать, сколько мостиков через речку вы перейдёте за прогулку.'
+          },
+          {
+            type: 'pitstop',
+            badge: '☕ Погреться · В саду',
+            title: 'Пит-стоп от Ордички: Кофейня и трдельники в парке',
+            place: 'Баташевский сад',
+            recommend: 'Горячий трдельник с корицей и карамельный латте.',
+            ordiNote: 'Свежий воздух и тёплая выпечка — идеальное комбо!'
+          }
+        ]
+      },
+      {
+        id: 'helmet-embankment',
+        districtLabel: 'Зареченский район · Музей оружия и Упа',
+        title: 'Закат у Шлема и Демидовская плотина',
+        subtitle: 'Панорамный маршрут вдоль реки Упы с видом на исторический центр Тулы',
+        duration: '1 ч 20 мин',
+        walkTime: '55 мин ходьбы + 25 мин паузы',
+        distance: '2,7 км',
+        stepsCount: '~3 600 шагов',
+        terrain: 'Набережная и мост · Без горок',
+        budget: '₽₽',
+        tags: ['Вечерний вайб', '1.5–2 часа', 'История'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.204120, 37.615840],
+          [54.202850, 37.614250],
+          [54.197365, 37.619015]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Сквер у Музея оружия (здание-Шлем)',
+            desc: 'Встречаемся у подсвеченного купола музея и любуемся видом на реку Упу.',
+            task: 'Сделать панорамное фото города на закате.'
+          },
+          {
+            type: 'walk',
+            title: '2. Переход по Демидовской плотине к Кремлю',
+            desc: 'Переходим реку по старой плотине и выходим прямо к огням Казанской набережной.'
+          }
+        ]
+      },
+      {
+        id: 'rogozhinsky-park',
+        districtLabel: 'Центральный / Привокзальный · Рогожинский парк',
+        title: 'Лесная тропа и вечерняя тишина',
+        subtitle: 'Уединённая прогулка по сосново-лиственному парку для душевного разговора',
+        duration: '1 ч 15 мин',
+        walkTime: '1 ч ходьбы + 15 мин паузы',
+        distance: '3,0 км',
+        stepsCount: '~4 000 шагов',
+        terrain: 'Парковые тропы · Лёгкий рельеф',
+        budget: '₽',
+        tags: ['Природа', 'До 1 часа', 'Романтика'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.172450, 37.618420],
+          [54.169120, 37.621450]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Вход в Рогожинский парк со стороны ул. Демьянова',
+            desc: 'Прогуливаемся по освещённым лесным дорожкам вдалеке от шумных проспектов.',
+            task: 'Включить режим «без телефонов» на 20 минут и просто поболтать обо всём.'
+          }
+        ]
+      },
+      {
+        id: 'grand-tula-tour',
+        districtLabel: 'Центральный + Советский · Большой круг',
+        title: 'Большое свидание: от Кремля до ЦПКиО',
+        subtitle: 'Насыщенный маршрут выходного дня через весь центр, Пушкинский сквер и парк',
+        duration: '2 ч 45 мин',
+        walkTime: '1 ч 45 мин ходьбы + 1 ч на кафе',
+        distance: '5,2 км',
+        stepsCount: '~6 900 шагов',
+        terrain: 'Городской променад и парк · Умеренный темп',
+        budget: '₽₽₽',
+        tags: ['Долгая прогулка', 'Кофе и еда', 'Вечерний вайб'],
+        yandexMapsUrl: buildYandexRouteUrl([
+          [54.194550, 37.620300],
+          [54.187450, 37.609820],
+          [54.181250, 37.590100]
+        ]),
+        steps: [
+          {
+            type: 'walk',
+            title: '1. Старт в Кремлёвском саду',
+            desc: 'Начинаем у стен древнего Кремля и выходим на проспект Ленина.'
+          },
+          {
+            type: 'pitstop',
+            badge: '☕ Экватор пути · Кофе-брейк',
+            title: 'Пит-стоп от Ордички: Кофейня в районе Пушкинского сквера',
+            place: 'пр-т Ленина / ул. Пушкинская',
+            recommend: 'Двойной капучино и тёплый круассан перед входом в парк.',
+            ordiNote: 'Половина пути позади — самое время подкрепиться!'
+          },
+          {
+            type: 'walk',
+            title: '2. Финиш в Белоусовском парке у прудов',
+            desc: 'Доходим до Центрального парка и завершаем день у воды.'
+          }
+        ]
+      }
+    ];
+
+    const BUILDER_TASKS_BY_VIBE = {
+      romance: 'Остановиться в самом красивом месте улицы, взяться за руки и загадать одно общее желание.',
+      nature: 'Найти самый тихий зелёный уголок и сделать совместное селфи без спешки.',
+      art: 'Обратить внимание на необычные детали фасадов, вывесок или граффити по пути.',
+      history: 'Представить, как эта улица выглядела 100 лет назад, и выбрать самый красивый старинный дом.'
+    };
+
+    const SWIPE_IDEAS = [
+      {
+        title: 'Закат на Казанской набережной',
+        time: '1 ч 30 мин · 2,4 км',
+        desc: 'Взять раф с халвой на Металлистов, пройти вдоль воды под огнями Кремля и зайти на ужин в «Искру».',
+        routeId: 'kremlin-cozy'
+      },
+      {
+        title: 'Уютный вечер в «Октаве»',
+        time: '1 ч 15 мин · 1,6 км',
+        desc: 'Выбрать друг другу открытки в книжном, съесть медовик в кафе «Волна» и прогуляться по центру.',
+        routeId: 'oktava-art'
+      },
+      {
+        title: 'Кормить уток в Белоусовском парке',
+        time: '1 ч 30 мин · 3,2 км',
+        desc: 'Спокойная прогулка по липовым аллеям с горячим облепиховым чаем и видом на каскад прудов.',
+        routeId: 'belousov-park'
+      },
+      {
+        title: 'Кирпичный двор «Ликёрки Лофт»',
+        time: '1 ч 35 мин · 2,1 км',
+        desc: 'Сфотографироваться у памятника Левше и поужинать под тёплыми гирляндами старинного двора.',
+        routeId: 'likerka-loft'
+      }
+    ];
+
+    const FOOD_SPOTS = [
+      {
+        name: 'Кофе Культ (ул. Металлистов)',
+        category: 'coffee',
+        badge: '☕ Погреться кофе',
+        budget: '₽',
+        area: 'Центральный · ул. Металлистов, 16',
+        dish: 'Раф с халвой, флэт уайт и свежие круассаны.',
+        mapUrl: 'https://yandex.ru/maps/?text=Тула, улица Металлистов, 16'
+      },
+      {
+        name: 'Пиццерия «Лисица» (кластер «Искра»)',
+        category: 'fast',
+        badge: '🍕 Сытно и быстро',
+        budget: '₽₽',
+        area: 'Центральный · ул. Советская, 11',
+        dish: 'Горячая неаполитанская пицца с грушей и горгонзолой.',
+        mapUrl: 'https://yandex.ru/maps/?text=Тула, Советская улица, 11'
+      },
+      {
+        name: 'Кафе «Волна» (кластер «Октава»)',
+        category: 'sweet',
+        badge: '🥐 Сладкая пауза',
+        budget: '₽₽',
+        area: 'Центральный · Центральный пер., 18',
+        dish: 'Нежный медовик, сырники и фильтр-кофе.',
+        mapUrl: 'https://yandex.ru/maps/?text=Тула, Центральный переулок, 18'
+      },
+      {
+        name: 'Ресторан «Пряности и Радости»',
+        category: 'dinner',
+        badge: '🍷 Красивый ужин',
+        budget: '₽₽₽',
+        area: 'Центральный · ул. Советская, 11',
+        dish: 'Хачапури по-аджарски, хинкали и тёплый вечерний свет.',
+        mapUrl: 'https://yandex.ru/maps/?text=Тула, Пряности и Радости, Советская 11'
+      },
+      {
+        name: 'Ресторан «Пётр Петрович» (в ЦПКиО)',
+        category: 'dinner',
+        badge: '🍷 Красивый ужин',
+        budget: '₽₽₽',
+        area: 'Советский · ул. Первомайская, 13А',
+        dish: 'Ужин в уютном зале сразу после прогулки по парку.',
+        mapUrl: 'https://yandex.ru/maps/?text=Тула, Первомайская улица, 13А'
+      },
+      {
+        name: 'Лавка «Тульский пряник и белёвская пастила»',
+        category: 'sweet',
+        badge: '🥐 Сладкая пауза',
+        budget: '₽',
+        area: 'Центральный · ул. Союзная, 1',
+        dish: 'Свежий печатный пряник и воздушная яблочная пастила с собой.',
+        mapUrl: 'https://yandex.ru/maps/?text=Тула, Союзная улица, 1'
+      }
+    ];
+
+    const ORDI_QUOTES = [
+      '«Я уже навострил уши! Нажми кнопку ниже — подберу маршрут без повторов.»',
+      '«Не забудьте взять по пути горячий раф с халвой — я бы точно одобрил!»',
+      '«Если хочется погулять в своём районе — загляни во вкладку “Свой путь”.»',
+      '«Не можете решить, куда пойти? Запускайте “Вдвоём” и выбирайте по очереди!»'
+    ];
+
+    const TULA_DISTRICTS = {
+      central: {
+        name: 'Центральный',
+        streets: [
+          { name: 'ул. Металлистов', coords: [54.195510, 37.616980], spot: 'Купеческие особняки и вечерняя подсветка' },
+          { name: 'Казанская набережная', coords: [54.197365, 37.619015], spot: 'Деревянные настилы вдоль стен Кремля' },
+          { name: 'пр-т Ленина (центр)', coords: [54.187450, 37.609820], spot: 'Пушкинский сквер и исторический центр' },
+          { name: 'ул. Тургеневская', coords: [54.188640, 37.611420], spot: 'Тихие улочки с резными наличниками' },
+          { name: 'Центральный переулок', coords: [54.189210, 37.626840], spot: 'Творческий кластер «Октава»' }
+        ],
+        food: {
+          coffee: { name: 'Кофе Культ (ул. Металлистов, 16)', dish: 'Раф с халвой и тёплый круассан' },
+          sweet: { name: 'Кафе «Волна» (Центральный пер., 18)', dish: 'Медовик и цитрусовый раф' },
+          fast: { name: 'Пиццерия «Лисица» (ул. Советская, 11)', dish: 'Неаполитанская пицца в пространстве «Искра»' },
+          dinner: { name: 'Ресторан «Пряности и Радости» (ул. Советская, 11)', dish: 'Хачапури по-аджарски и вечерний ужин под гирляндами' }
+        }
+      },
+      sovetsky: {
+        name: 'Советский',
+        streets: [
+          { name: 'ул. Первомайская', coords: [54.181250, 37.590100], spot: 'Вход в Белоусовский парк и липовая аллея' },
+          { name: 'пр-т Ленина (Ликёрка)', coords: [54.174350, 37.599850], spot: 'Двор «Ликёрка Лофт» и памятник Левше' },
+          { name: 'ул. Фрунзе', coords: [54.184120, 37.596450], spot: 'Уютные зелёные скверы Советского района' },
+          { name: 'Красноармейский пр-т', coords: [54.192450, 37.601200], spot: 'Широкий бульвар с вечерними огнями' }
+        ],
+        food: {
+          coffee: { name: 'Кофейня на аллее ЦПКиО', dish: 'Горячий облепиховый чай с мёдом' },
+          sweet: { name: 'Кондитерская у Пушкинского сквера', dish: 'Эклеры и какао с маршмеллоу' },
+          fast: { name: 'Стритфуд-дворик в Ликёрке Лофт', dish: 'Авторские бургеры и картофель с розмарином' },
+          dinner: { name: 'Ресторан «Пётр Петрович» (ул. Первомайская, 13А)', dish: 'Уютный ужин у Белоусовского парка' }
+        }
+      },
+      privokzalny: {
+        name: 'Привокзальный',
+        streets: [
+          { name: 'пр-т Ленина (Платоновский парк)', coords: [54.148920, 37.589850], spot: 'Белый мостик и каскад прудов усадьбы' },
+          { name: 'ул. 9 Мая', coords: [54.156420, 37.582150], spot: 'Тихие бульвары и зелёные аллеи' },
+          { name: 'ул. Путейская (Московский вокзал)', coords: [54.198420, 37.575410], spot: 'Историческое здание вокзала и сквер' },
+          { name: 'ул. Макаренко', coords: [54.152140, 37.574820], spot: 'Спокойный вечерний променад без суеты' }
+        ],
+        food: {
+          coffee: { name: 'Павильон у пруда в Платоновском парке', dish: 'Карамельный латте и бельгийские вафли' },
+          sweet: { name: 'Пекарня на ул. 9 Мая', dish: 'Свежие булочки с корицей и чай' },
+          fast: { name: 'Кафе у входа в Платоновский парк', dish: 'Горячие сэндвичи и морс' },
+          dinner: { name: 'Уютное семейное кафе на проспекте Ленина', dish: 'Паста, тёплые салаты и десерт на двоих' }
+        }
+      },
+      zarechensky: {
+        name: 'Зареченский',
+        streets: [
+          { name: 'ул. Октябрьская', coords: [54.208450, 37.619420], spot: 'Историческое Заречье и старинные храмы' },
+          { name: 'ул. Токарева (Баташевский сад)', coords: [54.215840, 37.624910], spot: 'Деревянные мостки над рекой Тулицей' },
+          { name: 'ул. Демидовская', coords: [54.202850, 37.614250], spot: 'Музей оружия (Шлем) и Демидовская плотина' },
+          { name: 'ул. Максима Горького', coords: [54.212450, 37.611240], spot: 'Комсомольский парк и тихие тропы' }
+        ],
+        food: {
+          coffee: { name: 'Кофейня в Баташевском саду', dish: 'Капучино и горячий трдельник с корицей' },
+          sweet: { name: 'Кондитерская на ул. Октябрьской', dish: 'Тульские сладости и травяной чай' },
+          fast: { name: 'Кафе у набережной реки Упы', dish: 'Горячая пицца и лимонад' },
+          dinner: { name: 'Ресторан с видом на Музей оружия', dish: 'Вечерний ужин после заката у реки' }
+        }
+      },
+      proletarsky: {
+        name: 'Пролетарский',
+        streets: [
+          { name: 'Пролетарская набережная', coords: [54.198450, 37.638420], spot: 'Прогулка у воды и моста через Упу' },
+          { name: 'ул. Ложевая', coords: [54.195120, 37.654210], spot: 'Оживлённый бульвар и вечерние огни' },
+          { name: 'ул. Кирова', coords: [54.191240, 37.662450], spot: 'Скверы и тихие зелёные дворы' },
+          { name: 'ул. Металлургов', coords: [54.186420, 37.674120], spot: 'Просторная аллея для неспешной беседы' }
+        ],
+        food: {
+          coffee: { name: 'Кофейня на ул. Ложевой', dish: 'Фирменный раф и тёплый круассан' },
+          sweet: { name: 'Пекарня-кондитерская на ул. Кирова', dish: 'Свежие пирожные и ягодный чай' },
+          fast: { name: 'Пиццерия в Пролетарском районе', dish: 'Сырная пицца с собой на прогулку' },
+          dinner: { name: 'Уютное кафе на Пролетарской набережной', dish: 'Горячий ужин в спокойной обстановке' }
+        }
+      }
+    };
+
+    function loadSavedData() {
+      try {
+        const savedCustom = JSON.parse(localStorage.getItem('ordi_custom_routes') || '[]');
+        const savedDone = JSON.parse(localStorage.getItem('ordi_completed_routes') || '["kremlin-cozy"]');
+        return { savedCustom, savedDone };
+      } catch (e) {
+        return { savedCustom: [], savedDone: ['kremlin-cozy'] };
+      }
+    }
+
+    const persisted = loadSavedData();
+
+    const state = {
+      activeTab: 'walks',
+      selectedFilter: 'Все',
+      routes: [...persisted.savedCustom, ...INITIAL_ROUTES],
+      customRoutes: persisted.savedCustom,
+      completedRoutes: persisted.savedDone,
+      seenRouletteIds: [],
+      quoteIndex: 0,
+      swipeIndex: 0,
+      swipeMatched: false,
+      foodCategory: 'all',
+      builder: {
+        district: 'central',
+        street: 'ул. Металлистов',
+        customStreet: '',
+        durationKey: 'medium',
+        vibe: 'romance',
+        foodType: 'coffee',
+        budget: '₽₽'
+      }
+    };
+
+    function persistState() {
+      try {
+        localStorage.setItem('ordi_custom_routes', JSON.stringify(state.customRoutes));
+        localStorage.setItem('ordi_completed_routes', JSON.stringify(state.completedRoutes));
+      } catch (e) {}
+    }
+
+    function getOrdiSVG(sizeClass = 'w-16 h-16') {
+      return `
+        <div class="${sizeClass} shrink-0 rounded-2xl bg-parchment-50/90 border border-wine-800/20 flex items-center justify-center shadow-inner overflow-hidden p-1">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <polygon points="24,38 18,12 40,26" fill="#FFFFFF" stroke="#46111A" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="76,38 82,12 60,26" fill="#FFFFFF" stroke="#46111A" stroke-width="3" stroke-linejoin="round"/>
+            <polygon points="26,34 22,18 36,27" fill="#F2D5D9"/>
+            <polygon points="74,34 78,18 64,27" fill="#F2D5D9"/>
+            <circle cx="50" cy="48" r="28" fill="#FFFFFF" stroke="#46111A" stroke-width="3"/>
+            <circle cx="24" cy="52" r="9" fill="#FFFFFF"/>
+            <circle cx="76" cy="52" r="9" fill="#FFFFFF"/>
+            <circle cx="39" cy="43" r="3.5" fill="#24070C"/>
+            <circle cx="61" cy="43" r="3.5" fill="#24070C"/>
+            <circle cx="40" cy="42" r="1.2" fill="#FFFFFF"/>
+            <circle cx="62" cy="42" r="1.2" fill="#FFFFFF"/>
+            <ellipse cx="50" cy="53" rx="5.5" ry="4" fill="#24070C"/>
+            <path d="M43 60 Q50 66 57 60" fill="none" stroke="#46111A" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M27 68 Q50 76 73 68 L65 89 L50 95 L35 89 Z" fill="#5A1822" stroke="#310B12" stroke-width="2.5" stroke-linejoin="round"/>
+            <polygon points="50,76 55,81 50,86 45,81" fill="none" stroke="#DF8A58" stroke-width="1.8"/>
+            <circle cx="50" cy="81" r="1.5" fill="#F4ECE1"/>
+          </svg>
+        </div>
+      `;
+    }
+
+    function getOrnamentDivider() {
+      return `
+        <div class="flex items-center justify-center gap-2 my-2 opacity-75">
+          <span class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-parchment-200/50"></span>
+          <span class="text-[10px] text-ochre-400 tracking-widest">❖ ◈ ❖</span>
+          <span class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-parchment-200/50"></span>
+        </div>
+      `;
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      if (!toast || !text) return;
+      text.textContent = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2800);
+    }
+
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const isCurrent = btn.dataset.tab === tabName;
+        if (isCurrent) {
+          btn.classList.add('text-wine-800', 'bg-wine-800/12', 'font-extrabold');
+          btn.classList.remove('text-wine-900/60');
+        } else {
+          btn.classList.remove('text-wine-800', 'bg-wine-800/12', 'font-extrabold');
+          btn.classList.add('text-wine-900/60');
+        }
+      });
+      renderCurrentScreen();
+    }
+
+    function renderCurrentScreen() {
+      const container = document.getElementById('main-content');
+      if (!container) return;
+      container.scrollTop = 0;
+
+      if (state.activeTab === 'walks') {
+        renderWalksScreen(container);
+      } else if (state.activeTab === 'builder') {
+        renderBuilderScreen(container);
+      } else if (state.activeTab === 'swipe') {
+        renderSwipeScreen(container);
+      } else if (state.activeTab === 'food') {
+        renderFoodScreen(container);
+      } else if (state.activeTab === 'tula') {
+        renderTulaTrackerScreen(container);
+      }
+    }
+
+    function renderWalksScreen(container) {
+      const filters = ['Все', 'Вечерний вайб', 'До 1 часа', '1.5–2 часа', 'Природа', 'Кофе и еда', 'Свой маршрут'];
+
+      const filteredRoutes = state.selectedFilter === 'Все'
+        ? state.routes
+        : state.routes.filter(r => r.tags && r.tags.includes(state.selectedFilter));
+
+      container.innerHTML = `
+        <div class="animate-screen space-y-4">
+          <header class="text-center pt-1">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full burgundy-glass text-[10px] font-bold text-parchment-100 mb-1.5">
+              <span>🌤 Тула · +14 °C, без ветра</span>
+            </div>
+            <h1 class="vyaz-title text-2xl font-bold text-parchment-100">Куда поведёт Орди?</h1>
+            ${getOrnamentDivider()}
+          </header>
+
+          <div class="paper-card ornament-frame rounded-3xl p-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="ordi-float">${getOrdiSVG('w-16 h-16')}</div>
+              <div class="flex-1">
+                <div class="text-[10px] font-extrabold uppercase tracking-wider text-ochre-600">Ваш гид по Туле · Ордичка</div>
+                <p class="text-xs font-semibold text-wine-950 leading-snug mt-0.5">
+                  ${ORDI_QUOTES[state.quoteIndex % ORDI_QUOTES.length]}
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="spinOrdiRoulette()" class="bg-wine-800 hover:bg-wine-700 active:scale-[0.98] transition-all text-parchment-100 font-extrabold text-xs py-3 px-3 rounded-2xl flex items-center justify-center gap-1.5 shadow-md">
+                <span>🎲</span>
+                <span>Новый маршрут</span>
+              </button>
+              <button onclick="switchTab('builder')" class="bg-ochre-500 hover:bg-ochre-600 active:scale-[0.98] transition-all text-white font-extrabold text-xs py-3 px-3 rounded-2xl flex items-center justify-center gap-1.5 shadow-md">
+                <span>🧭</span>
+                <span>Свой путь</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+            ${filters.map(f => `
+              <button onclick="setWalkFilter('${f}')" class="shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold transition-all border ${
+                state.selectedFilter === f
+                  ? 'bg-parchment-100 text-wine-950 border-parchment-100 shadow-sm'
+                  : 'burgundy-glass text-parchment-100/90 hover:text-white'
+              }">
+                ${f}
+              </button>
+            `).join('')}
+          </div>
+
+          <div class="flex items-center justify-between px-1">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-parchment-100/90">
+              Сценарии прогулок (${filteredRoutes.length})
+            </span>
+            <button onclick="shuffleRoutesList()" class="text-[11px] font-bold text-ochre-400 hover:text-parchment-100 flex items-center gap-1">
+              <span>🔀 Перемешать</span>
+            </button>
+          </div>
+
+          <div class="space-y-3">
+            ${filteredRoutes.length === 0 ? `
+              <div class="burgundy-glass rounded-3xl p-5 text-center space-y-2">
+                <p class="text-xs text-parchment-100">По этому фильтру пока нет маршрутов — попробуй другой или собери свой!</p>
+                <button onclick="setWalkFilter('Все')" class="px-4 py-2 rounded-xl bg-ochre-500 text-white text-xs font-bold">Показать все</button>
+              </div>
+            ` : filteredRoutes.map(r => {
+              const isDone = state.completedRoutes.includes(r.id);
+              return `
+                <article onclick="openRouteDetail('${r.id}')" class="cursor-pointer paper-card ornament-frame rounded-3xl p-4 space-y-2.5 active:scale-[0.99] transition-transform">
+                  <div class="flex items-start justify-between gap-2">
+                    <div>
+                      <div class="flex flex-wrap items-center gap-1 mb-1">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-wine-800/12 text-wine-900">${r.districtLabel || 'Тула'}</span>
+                        ${isDone ? '<span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-pine-600 text-white">✓ Пройдено</span>' : ''}
+                      </div>
+                      <h2 class="vyaz-title text-lg font-bold text-wine-950 leading-tight">${r.title}</h2>
+                    </div>
+                    <span class="shrink-0 text-xs font-extrabold text-ochre-600 bg-parchment-50/80 px-2 py-1 rounded-xl border border-wine-800/15">${r.budget}</span>
+                  </div>
+
+                  <p class="text-xs text-wine-900/85 leading-relaxed">${r.subtitle}</p>
+
+                  <div class="grid grid-cols-2 gap-2 bg-parchment-50/75 rounded-2xl p-2.5 border border-wine-800/15">
+                    <div class="flex items-center gap-2">
+                      <span class="text-sm">⏱</span>
+                      <div>
+                        <div class="text-[10px] font-bold text-wine-900/60">Время прогулки</div>
+                        <div class="text-xs font-extrabold text-wine-950">${r.duration}</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 border-l border-wine-800/15 pl-2.5">
+                      <span class="text-sm">📍</span>
+                      <div>
+                        <div class="text-[10px] font-bold text-wine-900/60">Длина пути</div>
+                        <div class="text-xs font-extrabold text-wine-950">${r.distance}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between pt-0.5">
+                    <div class="flex flex-wrap gap-1">
+                      ${(r.tags || []).slice(0, 2).map(t => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-wine-800/10 text-wine-900">${t}</span>`).join('')}
+                    </div>
+                    <span class="text-xs font-extrabold text-wine-800">План прогулки →</span>
+                  </div>
+                </article>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function setWalkFilter(filterName) {
+      state.selectedFilter = filterName;
+      renderWalksScreen(document.getElementById('main-content'));
+    }
+
+    function spinOrdiRoulette() {
+      if (state.routes.length === 0) return;
+      let unseen = state.routes.filter(r => !state.seenRouletteIds.includes(r.id));
+      if (unseen.length === 0) {
+        state.seenRouletteIds = [];
+        unseen = [...state.routes];
+      }
+      const picked = unseen[Math.floor(Math.random() * unseen.length)];
+      state.seenRouletteIds.push(picked.id);
+      state.quoteIndex = (state.quoteIndex + 1) % ORDI_QUOTES.length;
+      showToast(`Орди выбрал: «${picked.title}»!`);
+      openRouteDetail(picked.id);
+    }
+
+    function shuffleRoutesList() {
+      for (let i = state.routes.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [state.routes[i], state.routes[j]] = [state.routes[j], state.routes[i]];
+      }
+      state.quoteIndex = (state.quoteIndex + 1) % ORDI_QUOTES.length;
+      showToast('Орди перемешал карточки прогулок!');
+      renderWalksScreen(document.getElementById('main-content'));
+    }
+
+    function openRouteDetail(routeId) {
+      const route = state.routes.find(r => r.id === routeId);
+      const modal = document.getElementById('route-modal');
+      if (!route || !modal) return;
+
+      const isDone = state.completedRoutes.includes(route.id);
+
+      modal.innerHTML = `
+        <div class="relative z-10 flex items-center justify-between px-4 py-3 bg-wine-950/85 backdrop-blur-md border-b border-parchment-100/20 shrink-0">
+          <button onclick="closeRouteDetail()" class="px-3 py-1.5 rounded-xl bg-parchment-100/15 text-parchment-100 text-xs font-bold flex items-center gap-1">
+            <span>←</span>
+            <span>Назад</span>
+          </button>
+          <span class="vyaz-title text-sm font-bold text-parchment-100">Сценарий свидания</span>
+          <button onclick="toggleCompleteRoute('${route.id}')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold ${isDone ? 'bg-pine-600 text-white' : 'bg-parchment-100 text-wine-950'}">
+            ${isDone ? '✓ Пройдено' : '+ В дневник'}
+          </button>
+        </div>
+
+        <div class="relative z-10 flex-1 overflow-y-auto no-scrollbar p-4 space-y-4 pb-28">
+          <div class="paper-card ornament-frame rounded-3xl p-4 space-y-3">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-wine-800 text-parchment-100">${route.districtLabel || 'Тула'}</span>
+              <h2 class="vyaz-title text-xl font-bold text-wine-950 mt-2 leading-tight">${route.title}</h2>
+              <p class="text-xs text-wine-900/80 mt-1">${route.subtitle}</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1.5 bg-parchment-50/80 rounded-2xl p-2.5 text-center border border-wine-800/15">
+              <div>
+                <div class="text-[10px] font-bold text-wine-900/60">Время</div>
+                <div class="text-xs font-extrabold text-wine-950">⏱ ${route.duration}</div>
+                <div class="text-[9px] text-wine-900/70 mt-0.5">${route.walkTime || ''}</div>
+              </div>
+              <div class="border-x border-wine-800/15 px-1">
+                <div class="text-[10px] font-bold text-wine-900/60">Длина пути</div>
+                <div class="text-xs font-extrabold text-wine-950">📍 ${route.distance}</div>
+                <div class="text-[9px] text-wine-900/70 mt-0.5">${route.stepsCount || ''}</div>
+              </div>
+              <div>
+                <div class="text-[10px] font-bold text-wine-900/60">Бюджет</div>
+                <div class="text-xs font-extrabold text-ochre-600">${route.budget}</div>
+                <div class="text-[9px] text-wine-900/70 mt-0.5">На двоих</div>
+              </div>
+            </div>
+
+            ${route.terrain ? `
+              <div class="text-[11px] font-semibold text-wine-900/85 bg-parchment-50/60 px-3 py-2 rounded-xl border border-wine-800/10">
+                👟 <strong>Покрытие и темп:</strong> ${route.terrain}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-parchment-100/90 px-1">План прогулки по шагам</h3>
+            ${(route.steps || []).map(step => {
+              if (step.type === 'pitstop') {
+                return `
+                  <div class="paper-card ornament-frame rounded-3xl p-4 space-y-2 border-2 border-ochre-400">
+                    <div class="flex items-center gap-3">
+                      ${getOrdiSVG('w-12 h-12')}
+                      <div>
+                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-ochre-500 text-white">${step.badge || 'Пит-стоп от Ордички'}</span>
+                        <h4 class="text-xs font-extrabold text-wine-950 mt-1">${step.title}</h4>
+                      </div>
+                    </div>
+                    <div class="text-[11px] text-wine-900/80">📍 <strong>Адрес:</strong> ${step.place}</div>
+                    <div class="text-xs font-bold text-wine-950 bg-parchment-50/80 p-2.5 rounded-xl border border-wine-800/15">
+                      🍽 <strong>Что брать:</strong> ${step.recommend}
+                    </div>
+                    ${step.ordiNote ? `<p class="text-[11px] italic text-wine-900/80">🐾 «${step.ordiNote}»</p>` : ''}
+                  </div>
+                `;
+              }
+              return `
+                <div class="burgundy-glass rounded-3xl p-4 space-y-2">
+                  <h4 class="text-sm font-extrabold text-parchment-100">${step.title}</h4>
+                  <p class="text-xs text-parchment-100/85 leading-relaxed">${step.desc}</p>
+                  ${step.task ? `
+                    <div class="bg-parchment-100/12 border border-parchment-100/20 rounded-2xl p-2.5 text-[11px] text-parchment-100">
+                      ✨ <strong>Идея для двоих:</strong> ${step.task}
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        <div class="frosted-bar absolute bottom-0 inset-x-0 z-20 p-3">
+          <a href="${route.yandexMapsUrl}" target="_blank" rel="noopener noreferrer" class="w-full bg-ochre-500 hover:bg-ochre-600 text-white font-extrabold text-sm py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg">
+            <span>🗺 Открыть маршрут в Яндекс Картах</span>
+            <span>↗</span>
+          </a>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeRouteDetail() {
+      const modal = document.getElementById('route-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function toggleCompleteRoute(routeId) {
+      const idx = state.completedRoutes.indexOf(routeId);
+      if (idx === -1) {
+        state.completedRoutes.push(routeId);
+        showToast('Прогулка добавлена в дневник «Наша Тула»!');
+      } else {
+        state.completedRoutes.splice(idx, 1);
+        showToast('Отметка о прохождении снята.');
+      }
+      persistState();
+      openRouteDetail(routeId);
+      if (state.activeTab === 'walks' || state.activeTab === 'tula') {
+        renderCurrentScreen();
+      }
+    }
+
+    function renderBuilderScreen(container) {
+      const b = state.builder;
+      const distObj = TULA_DISTRICTS[b.district] || TULA_DISTRICTS.central;
+
+      const durations = [
+        { key: 'short', label: 'До 1 часа', sub: '~1,8 км' },
+        { key: 'medium', label: '1,5–2 часа', sub: '~3,1 км' },
+        { key: 'long', label: '2,5+ часа', sub: '~4,8 км' }
+      ];
+
+      const vibes = [
+        { key: 'romance', label: '✨ Романтика' },
+        { key: 'nature', label: '🌿 Парк и тишина' },
+        { key: 'art', label: '🎨 Арт и витрины' },
+        { key: 'history', label: '🏛 Старая Тула' }
+      ];
+
+      const foods = [
+        { key: 'coffee', label: '☕ Кофе с собой' },
+        { key: 'sweet', label: '🥐 Десерт и чай' },
+        { key: 'fast', label: '🍕 Сытный перекус' },
+        { key: 'dinner', label: '🍷 Красивый ужин' }
+      ];
+
+      const budgets = ['₽', '₽₽', '₽₽₽'];
+
+      container.innerHTML = `
+        <div class="animate-screen space-y-4">
+          <header class="text-center pt-1">
+            <h1 class="vyaz-title text-2xl font-bold text-parchment-100">Конструктор Орди</h1>
+            <p class="text-xs text-parchment-200/80 mt-0.5">Выбери район, улицу и настроение — Орди соберёт маршрут</p>
+            ${getOrnamentDivider()}
+          </header>
+
+          <div class="paper-card ornament-frame rounded-3xl p-4 space-y-3">
+            <div class="text-xs font-extrabold uppercase tracking-wider text-wine-900">1. Район (округ) Тулы</div>
+            <div class="flex flex-wrap gap-1.5">
+              ${Object.entries(TULA_DISTRICTS).map(([key, d]) => `
+                <button onclick="setBuilderDistrict('${key}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  b.district === key
+                    ? 'bg-wine-800 text-parchment-100 shadow-sm'
+                    : 'bg-parchment-50/80 text-wine-950 border border-wine-800/15'
+                }">
+                  ${d.name}
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="pt-1 space-y-2">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-wine-900">2. Улица старта прогулки</div>
+              <div class="flex flex-wrap gap-1.5">
+                ${distObj.streets.map(st => `
+                  <button onclick="setBuilderStreet('${st.name}')" class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all ${
+                    !b.customStreet && b.street === st.name
+                      ? 'bg-ochre-500 text-white shadow-sm'
+                      : 'bg-parchment-50/80 text-wine-950 border border-wine-800/15'
+                  }">
+                    ${st.name}
+                  </button>
+                `).join('')}
+              </div>
+
+              <div class="pt-1">
+                <input
+                  type="text"
+                  value="${b.customStreet}"
+                  oninput="setBuilderCustomStreet(this.value)"
+                  placeholder="Или впиши любую улицу Тулы (например: ул. Революции)..."
+                  class="w-full px-3 py-2.5 rounded-xl bg-parchment-50/90 border border-wine-800/20 text-xs font-semibold text-wine-950 placeholder:text-wine-900/45 focus:outline-none focus:border-ochre-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="paper-card ornament-frame rounded-3xl p-4 space-y-2.5">
+            <div class="text-xs font-extrabold uppercase tracking-wider text-wine-900">3. Время и длина маршрута</div>
+            <div class="grid grid-cols-3 gap-2">
+              ${durations.map(d => `
+                <button onclick="setBuilderField('durationKey', '${d.key}')" class="p-2.5 rounded-2xl text-center transition-all border ${
+                  b.durationKey === d.key
+                    ? 'bg-wine-800 text-parchment-100 border-wine-800 shadow-sm'
+                    : 'bg-parchment-50/80 text-wine-950 border-wine-800/15'
+                }">
+                  <div class="text-xs font-extrabold">${d.label}</div>
+                  <div class="text-[10px] opacity-80 mt-0.5">${d.sub}</div>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="paper-card ornament-frame rounded-3xl p-4 space-y-3">
+            <div>
+              <div class="text-xs font-extrabold uppercase tracking-wider text-wine-900 mb-2">4. Атмосфера прогулки</div>
+              <div class="grid grid-cols-2 gap-1.5">
+                ${vibes.map(v => `
+                  <button onclick="setBuilderField('vibe', '${v.key}')" class="px-3 py-2 rounded-xl text-xs font-bold text-left transition-all border ${
+                    b.vibe === v.key
+                      ? 'bg-wine-800 text-parchment-100 border-wine-800'
+                      : 'bg-parchment-50/80 text-wine-950 border-wine-800/15'
+                  }">
+                    ${v.label}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div>
+              <div class="text-xs font-extrabold uppercase tracking-wider text-wine-900 mb-2">5. Пит-стоп от Ордички</div>
+              <div class="grid grid-cols-2 gap-1.5">
+                ${foods.map(f => `
+                  <button onclick="setBuilderField('foodType', '${f.key}')" class="px-3 py-2 rounded-xl text-xs font-bold text-left transition-all border ${
+                    b.foodType === f.key
+                      ? 'bg-ochre-500 text-white border-ochre-500'
+                      : 'bg-parchment-50/80 text-wine-950 border-wine-800/15'
+                  }">
+                    ${f.label}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-wine-900">Бюджет:</span>
+              <div class="flex gap-1.5">
+                ${budgets.map(bg => `
+                  <button onclick="setBuilderField('budget', '${bg}')" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold border ${
+                    b.budget === bg
+                      ? 'bg-wine-800 text-parchment-100 border-wine-800'
+                      : 'bg-parchment-50/80 text-wine-950 border-wine-800/15'
+                  }">
+                    ${bg}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <button onclick="generateCustomRoute()" class="w-full bg-ochre-500 hover:bg-ochre-600 active:scale-[0.99] transition-all text-white font-extrabold text-sm py-4 px-4 rounded-2xl shadow-lg flex items-center justify-center gap-2">
+            <span>🐾 Собрать маршрут с Орди</span>
+          </button>
+        </div>
+      `;
+    }
+
+    function setBuilderDistrict(districtKey) {
+      state.builder.district = districtKey;
+      const streets = TULA_DISTRICTS[districtKey]?.streets || [];
+      if (streets.length > 0) {
+        state.builder.street = streets[0].name;
+      }
+      state.builder.customStreet = '';
+      renderBuilderScreen(document.getElementById('main-content'));
+    }
+
+    function setBuilderStreet(streetName) {
+      state.builder.street = streetName;
+      state.builder.customStreet = '';
+      renderBuilderScreen(document.getElementById('main-content'));
+    }
+
+    function setBuilderCustomStreet(val) {
+      state.builder.customStreet = val;
+    }
+
+    function setBuilderField(field, value) {
+      state.builder[field] = value;
+      renderBuilderScreen(document.getElementById('main-content'));
+    }
+
+    function generateCustomRoute() {
+      const b = state.builder;
+      const distObj = TULA_DISTRICTS[b.district] || TULA_DISTRICTS.central;
+      const customText = b.customStreet.trim();
+      const activeStreetName = customText || b.street;
+      const matchedStreet = distObj.streets.find(s => s.name === activeStreetName);
+
+      const durationMeta = {
+        short: { duration: '55 мин', walkTime: '35 мин ходьбы + 20 мин пауза', distance: '1,8 км', stepsCount: '~2 400 шагов' },
+        medium: { duration: '1 ч 45 мин', walkTime: '1 ч 05 мин ходьбы + 40 мин пауза', distance: '3,1 км', stepsCount: '~4 100 шагов' },
+        long: { duration: '2 ч 35 мин', walkTime: '1 ч 40 мин ходьбы + 55 мин пауза', distance: '4,8 км', stepsCount: '~6 400 шагов' }
+      }[b.durationKey];
+
+      const foodSpot = distObj.food[b.foodType] || distObj.food.coffee;
+      const taskHint = BUILDER_TASKS_BY_VIBE[b.vibe] || BUILDER_TASKS_BY_VIBE.romance;
+
+      const secondStreetObj = distObj.streets.find(s => s.name !== activeStreetName) || distObj.streets[0];
+      const routePoints = matchedStreet
+        ? [matchedStreet.coords, secondStreetObj.coords]
+        : [`Тула, ${activeStreetName}`, `Тула, ${secondStreetObj.name}`];
+
+      const newRoute = {
+        id: 'custom-' + Date.now(),
+        districtLabel: `${distObj.name} район · ${activeStreetName}`,
+        title: `Прогулка: ${activeStreetName}`,
+        subtitle: `Авторский сценарий от Орди в ${distObj.name.toLowerCase()}ом районе Тулы с уютным пит-стопом`,
+        duration: durationMeta.duration,
+        walkTime: durationMeta.walkTime,
+        distance: durationMeta.distance,
+        stepsCount: durationMeta.stepsCount,
+        terrain: 'Городской маршрут · Комфортный темп',
+        budget: b.budget,
+        tags: ['Свой маршрут', durationMeta.duration.includes('55') ? 'До 1 часа' : '1.5–2 часа', 'Кофе и еда'],
+        yandexMapsUrl: buildYandexRouteUrl(routePoints),
+        steps: [
+          {
+            type: 'walk',
+            title: `1. Старт: ${activeStreetName}`,
+            desc: matchedStreet
+              ? `Встречаемся в точке: ${matchedStreet.spot}. Начинаем неспешную прогулку по району.`
+              : `Встречаемся на улице ${activeStreetName} (${distObj.name} район) и выбираем самое уютное направление.`,
+            task: taskHint
+          },
+          {
+            type: 'pitstop',
+            badge: '🐾 Пит-стоп от Ордички · По пути',
+            title: foodSpot.name,
+            place: `${distObj.name} район, Тула`,
+            recommend: foodSpot.dish,
+            ordiNote: 'Я подобрал это место специально под ваш маршрут и бюджет!'
+          },
+          {
+            type: 'walk',
+            title: `2. Продолжение маршрута в сторону: ${secondStreetObj.name}`,
+            desc: `Проходим по красивой части округа (${secondStreetObj.spot}) и завершаем свидание совместным фото.`
+          }
+        ]
+      };
+
+      state.customRoutes.unshift(newRoute);
+      state.routes.unshift(newRoute);
+      persistState();
+      showToast('Орди собрал и сохранил ваш маршрут!');
+      openRouteDetail(newRoute.id);
+    }
+
+    function renderSwipeScreen(container) {
+      const idea = SWIPE_IDEAS[state.swipeIndex % SWIPE_IDEAS.length];
+
+      container.innerHTML = `
+        <div class="animate-screen space-y-4">
+          <header class="text-center pt-1">
+            <h1 class="vyaz-title text-2xl font-bold text-parchment-100">Свайп вдвоём</h1>
+            <p class="text-xs text-parchment-200/80 mt-0.5">Листайте идеи по очереди, пока оба не скажете «Да!»</p>
+            ${getOrnamentDivider()}
+          </header>
+
+          ${state.swipeMatched ? `
+            <div class="paper-card ornament-frame rounded-3xl p-5 text-center space-y-3">
+              <div class="flex justify-center">${getOrdiSVG('w-20 h-20')}</div>
+              <div class="text-xs font-extrabold uppercase tracking-wider text-ochre-600">Совпадение найдено!</div>
+              <h2 class="vyaz-title text-xl font-bold text-wine-950">${idea.title}</h2>
+              <p class="text-xs text-wine-900/85">${idea.desc}</p>
+              <div class="grid grid-cols-2 gap-2 pt-2">
+                <button onclick="openRouteDetail('${idea.routeId}')" class="bg-wine-800 text-parchment-100 font-extrabold text-xs py-3 rounded-2xl">Открыть план</button>
+                <button onclick="resetSwipeGame()" class="bg-parchment-50 text-wine-950 border border-wine-800/20 font-bold text-xs py-3 rounded-2xl">Ещё круг</button>
+              </div>
+            </div>
+          ` : `
+            <div class="paper-card ornament-frame rounded-3xl p-5 space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-wine-800 text-parchment-100">Идея ${(state.swipeIndex % SWIPE_IDEAS.length) + 1} из ${SWIPE_IDEAS.length}</span>
+                <span class="text-xs font-bold text-ochre-600">⏱ ${idea.time}</span>
+              </div>
+
+              <div class="py-3 space-y-2">
+                <h2 class="vyaz-title text-2xl font-bold text-wine-950 leading-tight">${idea.title}</h2>
+                <p class="text-xs text-wine-900/85 leading-relaxed">${idea.desc}</p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="handleSwipeChoice(false)" class="py-3.5 rounded-2xl bg-parchment-50 border border-wine-800/20 text-wine-900 font-extrabold text-xs active:scale-95 transition-transform">
+                  ✕ Не сегодня
+                </button>
+                <button onclick="handleSwipeChoice(true)" class="py-3.5 rounded-2xl bg-ochre-500 text-white font-extrabold text-xs shadow-md active:scale-95 transition-transform">
+                  ♥ Идём сюда!
+                </button>
+              </div>
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    function handleSwipeChoice(liked) {
+      if (liked) {
+        state.swipeMatched = true;
+        showToast('Отличный выбор! Орди уже виляет хвостом.');
+      } else {
+        state.swipeIndex++;
+      }
+      renderSwipeScreen(document.getElementById('main-content'));
+    }
+
+    function resetSwipeGame() {
+      state.swipeMatched = false;
+      state.swipeIndex++;
+      renderSwipeScreen(document.getElementById('main-content'));
+    }
+
+    function renderFoodScreen(container) {
+      const cats = [
+        { id: 'all', label: 'Все места' },
+        { id: 'coffee', label: '☕ Кофе' },
+        { id: 'sweet', label: '🥐 Десерты' },
+        { id: 'fast', label: '🍕 Сытно' },
+        { id: 'dinner', label: '🍷 Ужин' }
+      ];
+
+      const spots = state.foodCategory === 'all'
+        ? FOOD_SPOTS
+        : FOOD_SPOTS.filter(s => s.category === state.foodCategory);
+
+      container.innerHTML = `
+        <div class="animate-screen space-y-4">
+          <header class="text-center pt-1">
+            <h1 class="vyaz-title text-2xl font-bold text-parchment-100">Где перекусить?</h1>
+            <p class="text-xs text-parchment-200/80 mt-0.5">Проверенные точки от Ордички на время прогулки</p>
+            ${getOrnamentDivider()}
+          </header>
+
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+            ${cats.map(c => `
+              <button onclick="setFoodCategory('${c.id}')" class="shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold transition-all border ${
+                state.foodCategory === c.id
+                  ? 'bg-parchment-100 text-wine-950 border-parchment-100'
+                  : 'burgundy-glass text-parchment-100/90'
+              }">
+                ${c.label}
+              </button>
+            `).join('')}
+          </div>
+
+          <div class="space-y-3">
+            ${spots.map(s => `
+              <div class="paper-card ornament-frame rounded-3xl p-4 space-y-2">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-ochre-500 text-white">${s.badge}</span>
+                    <h3 class="text-sm font-extrabold text-wine-950 mt-1">${s.name}</h3>
+                    <div class="text-[11px] text-wine-900/75">📍 ${s.area}</div>
+                  </div>
+                  <span class="text-xs font-extrabold text-ochre-600 bg-parchment-50 px-2 py-1 rounded-xl border border-wine-800/15">${s.budget}</span>
+                </div>
+                <p class="text-xs text-wine-950 bg-parchment-50/75 p-2.5 rounded-xl border border-wine-800/10">
+                  <strong>Совет Ордички:</strong> ${s.dish}
+                </p>
+                <a href="${s.mapUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-extrabold text-wine-800 pt-0.5">
+                  <span>Показать на Яндекс Картах</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function setFoodCategory(catId) {
+      state.foodCategory = catId;
+      renderFoodScreen(document.getElementById('main-content'));
+    }
+
+    function renderTulaTrackerScreen(container) {
+      const doneRoutes = state.routes.filter(r => state.completedRoutes.includes(r.id));
+      const totalKm = doneRoutes.reduce((sum, r) => {
+        const num = parseFloat(String(r.distance).replace(',', '.'));
+        return sum + (isNaN(num) ? 0 : num);
+      }, 0);
+
+      const badges = [
+        { icon: '🏰', title: 'Стражи Кремля', unlocked: doneRoutes.length >= 1 },
+        { icon: '🥨', title: 'Знатоки пряника', unlocked: doneRoutes.length >= 3 },
+        { icon: '🐕', title: 'Лучшие друзья Орди', unlocked: state.customRoutes.length >= 1 },
+        { icon: '🗺', title: 'Покорители Тулы', unlocked: doneRoutes.length >= 5 }
+      ];
+
+      container.innerHTML = `
+        <div class="animate-screen space-y-4">
+          <header class="text-center pt-1">
+            <h1 class="vyaz-title text-2xl font-bold text-parchment-100">Наша Тула</h1>
+            <p class="text-xs text-parchment-200/80 mt-0.5">Личная карта ваших совместных прогулок и достижений</p>
+            ${getOrnamentDivider()}
+          </header>
+
+          <div class="paper-card ornament-frame rounded-3xl p-4 space-y-3">
+            <div class="flex items-center gap-3">
+              ${getOrdiSVG('w-16 h-16')}
+              <div>
+                <div class="text-[10px] font-extrabold uppercase tracking-wider text-ochre-600">Ваш прогресс</div>
+                <div class="vyaz-title text-xl font-bold text-wine-950">${doneRoutes.length} из ${state.routes.length} маршрутов</div>
+                <div class="text-xs font-bold text-wine-900/80 mt-0.5">Пройдено вместе: ~${totalKm.toFixed(1).replace('.', ',')} км</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              ${badges.map(b => `
+                <div class="p-2.5 rounded-2xl border flex items-center gap-2 ${
+                  b.unlocked
+                    ? 'bg-parchment-50/90 border-ochre-500/40 text-wine-950'
+                    : 'bg-wine-950/10 border-wine-900/15 text-wine-950/45'
+                }">
+                  <span class="text-lg">${b.icon}</span>
+                  <div class="text-[11px] font-extrabold leading-tight">${b.title}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="space-y-2.5">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-parchment-100/90 px-1">Пройденные прогулки</h3>
+            ${doneRoutes.length === 0 ? `
+              <div class="burgundy-glass rounded-3xl p-5 text-center text-xs text-parchment-100/85">
+                Пока здесь пусто — открой любой маршрут и нажми «+ В дневник»!
+              </div>
+            ` : doneRoutes.map(r => `
+              <div onclick="openRouteDetail('${r.id}')" class="cursor-pointer burgundy-glass rounded-2xl p-3.5 flex items-center justify-between gap-2">
+                <div>
+                  <div class="text-xs font-extrabold text-parchment-100">${r.title}</div>
+                  <div class="text-[10px] text-parchment-200/75 mt-0.5">⏱ ${r.duration} · 📍 ${r.distance}</div>
+                </div>
+                <span class="text-xs font-bold text-ochre-400">Открыть →</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initIconsAndServiceWorker();
+      renderCurrentScreen();
+    });
+
+    function initIconsAndServiceWorker() {
+      try {
+        const ordiIconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <rect width="512" height="512" rx="112" fill="#4B131C"/>
+          <rect x="20" y="20" width="472" height="472" rx="96" fill="none" stroke="#DF8A58" stroke-width="6" stroke-dasharray="14 10"/>
+          <polygon points="145,205 115,85 215,150" fill="#FFFFFF" stroke="#24070C" stroke-width="12" stroke-linejoin="round"/>
+          <polygon points="367,205 397,85 297,150" fill="#FFFFFF" stroke="#24070C" stroke-width="12" stroke-linejoin="round"/>
+          <circle cx="256" cy="248" r="128" fill="#FFFFFF" stroke="#24070C" stroke-width="12"/>
+          <circle cx="206" cy="226" r="16" fill="#24070C"/>
+          <circle cx="306" cy="226" r="16" fill="#24070C"/>
+          <ellipse cx="256" cy="272" rx="25" ry="18" fill="#24070C"/>
+          <path d="M224 304 Q256 330 288 304" fill="none" stroke="#24070C" stroke-width="11" stroke-linecap="round"/>
+          <path d="M154 342 Q256 378 358 342 L322 438 L256 465 L190 438 Z" fill="#5A1822" stroke="#24070C" stroke-width="11" stroke-linejoin="round"/>
+        </svg>`;
+
+        const iconUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(ordiIconSvg);
+        const iconLink = document.getElementById('pwa-icon');
+        const appleIconLink = document.getElementById('pwa-apple-icon');
+        if (iconLink) iconLink.href = iconUrl;
+        if (appleIconLink) appleIconLink.href = iconUrl;
+
+        if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        }
+      } catch (e) {}
+    }
+  </script>
+</body>
+</html>
